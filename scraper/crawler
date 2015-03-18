@@ -1,0 +1,8 @@
+Wombat.crawl do
+   base_url "http://www.researchgate.net/institution/University_of_Oxford/department/Department_of_Chemistry/members/1"
+   people "css=div.indent-content>h5", :iterator do
+     name "css=a"
+     data "css=a" :follow do
+       stuff "css=div.profile-skills>h5"
+   end
+end
