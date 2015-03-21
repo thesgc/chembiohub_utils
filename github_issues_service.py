@@ -3,8 +3,9 @@ import os
 
 @route('/issues/create', method='POST')
 def create_issue():
-
+    user = request.headers.get("X-REMOTE_USER","Guest")
     labels   = request.forms.get('labels')
+    labels = ["user: " + user] + labels
     upload     = request.files.get('upload')
     repo = request.forms.get('repo')
     name, ext = os.path.splitext(upload.filename)
