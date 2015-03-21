@@ -3,6 +3,7 @@ import os
 
 @route('/issues/create', method='POST')
 def create_issue():
+    gh = github3.login(os.environ["GH_USER"],os.environ["GH_PASSWORD"])
     user = request.headers.get("X-REMOTE_USER","Guest")
     labels   = request.forms.get('labels')
     labels = ["user: " + user] + labels
